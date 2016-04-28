@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TodoApp</title>
+  <script type="text/javascript">
+    window.App = {};
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.0.1/react-dom.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js" charset="utf-8"></script>
+  <script type="text/babel" src="./js.jsx" charset="utf-8"></script>
+</head>
+<body>
+  <h1>Hello React!</h1>
+  <div id="app"></div>
+
+  <script type="text/babel">
+  const {TodoApp} = window.App;
+  ReactDOM.render(
+    <TodoApp />,
+    document.getElementById('app')
+  )
+  </script>
+</body>
+</html>
