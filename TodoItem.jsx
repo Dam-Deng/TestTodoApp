@@ -1,14 +1,51 @@
-const TodoItem = React.createClass({
-  render () {
-    const { title, completed } = this.props;
+class TodoItem extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = { editable: true };
+    this.toggleEditMode = this.toggleEditMode.bind(this);
+  }
+
+  toggleEditMode() {
+    this.setState({ editable: !this.state.editable });
+  }
+
+  renderViewMode() {
+    const { title, completed, onDelete } = this.props;
     return (
-    <li>
+      <div>
       <input type="checkbox" checked={completed} readOnly />
       <span>{title}</span>
-      <button>X</button>
-    </li>
-    )
+      <button onClick={()=> onDelete && onDelete()}>X</button>
+    </div>
+  );
+}
+
+  renderEditMode() {
+    return (
+      <input
+        autoFocus
+        placeholder="編輯待辦事項"
+        value={this.props.title}
+        onBlur={this.toggleEditMode}
+        onDoubleClick={this.toggleEditMode}
+        onKeyDown={(e)=>{
+          if(e.keyCode === 27){
+            e.preventDefault();
+            this.toggleEditMode();
+          }
+        }}
+
+      />
+  );
+}
+
+
+
+  render () {
+    return this.state.editable ? this.renderEditMode() : this.renderViewMode();
+
   }
-})
+}
 
 window.App.TodoItem = TodoItem;
