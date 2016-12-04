@@ -26,8 +26,8 @@
         componentDidMount() {
             this.timer = setInterval(function () {
                 var opacity = this.state.opacity;
-                opacity -=0.05;
-                if(opacity < 0.1){
+                opacity -= 0.05;
+                if (opacity < 0.1) {
                     opacity = 1.0;
                 }
                 this.setState({opacity: opacity});
@@ -37,7 +37,7 @@
         render: function () {
             var opacity = this.state.opacity;
             return <div>
-                <p style={{opacity:opacity}}>TEXT</p>
+                <p style={{opacity: opacity}}>TEXT</p>
             </div>
         }
     });
@@ -46,7 +46,7 @@
     let lText = 'lText';
 
     if (true) {
-         vText = 'vText2';
+        vText = 'vText2';
         let lText = 'lText2';
 
         console.log(vText); // vText2
