@@ -1,19 +1,11 @@
 const {TodoItem} = window.App;
 
-const TodoList = React.createClass({
-    propTypes: {
-        todos: React.PropTypes.array
-    },
-    defaultProps: {
-        todos: []
-    },
+class TodoList extends React.Component{
     render () {
         const {onDeleteTodo} = this.props;
         const {todos} = this.props;
         const todoElements = todos.map(function (todo) {
-            // console.log(todo);
             return (
-
                 <li key={todo.id}>
                     <TodoItem
                         title={todo.title}
@@ -28,6 +20,15 @@ const TodoList = React.createClass({
             </ul>
         )
     }
-})
+}
+
+TodoList.propTypes = {
+    todos: React.PropTypes.array
+};
+
+TodoList.defaultProps = {
+    todos: []
+};
+
 
 window.App.TodoList = TodoList;

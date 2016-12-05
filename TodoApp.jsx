@@ -5,22 +5,27 @@ const {
 } = window.App;
 
 
-var TodoApp = React.createClass({
+class TodoApp extends React.Component {
+    constructor(props, context, updater) {
+        super(props, context, updater);
+        this.state = {
+            todos: [
+                {
+                    id: 1,
+                    title: "title1",
+                    completed: true
+                },
+                {
+                    id: 2,
+                    title: "title2",
+                    completed: false
+                }
+            ]
+        }
+    }
 
-    render: function () {
-        const todos = [
-            {
-                id: 1,
-                title: "title1",
-                completed: true
-            },
-            {
-                id: 2,
-                title: "title2",
-                completed: false
-            }
-        ];
-
+    render() {
+        const {todos} = this.state;
         const headerData = {
             title: "你的待辦清單",
             name: "dam",
@@ -30,9 +35,24 @@ var TodoApp = React.createClass({
             <div>
                 <TodoHeader {...headerData}/>
                 <InputField placeholder="新的待辦事項"/>
-                <TodoList todos={todos}/>
+                <TodoList
+                    todos={todos}
+                    onDeleteTodo={
+                        (id)=>this.setState({
+                            todos: _deleteTodo(todos, id)
+                        })
+                    }
+                />
             </div>
         )
     }
-});
+}
+
+const _deleteTodo = (todos, id) => {
+    const idx = todos.findIndex((todo) => todo.id === id);
+    if (idx !== -1) {
+        todos.splice(idx, 1);
+    }
+    return todos;
+};
 window.App.TodoApp = TodoApp;

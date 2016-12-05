@@ -1,8 +1,7 @@
 class TodoItem extends React.Component {
-
-    constructor(props, context) {
-        super(props, context);
-        this.state = {editable: true};
+    constructor(props, context, updater) {
+        super(props, context, updater);
+        this.state = {editable: false};
         this.toggleEditMode = this.toggleEditMode.bind(this);
     }
 
@@ -14,7 +13,7 @@ class TodoItem extends React.Component {
         const {title, completed, onDelete} = this.props;
         return (
             <div>
-                <input type="checkbox" checked={completed} readOnly/>
+                <input type="checkbox" checked={completed} readOnly="readOnly"/>
                 <span>{title}</span>
                 <button onClick={()=> onDelete && onDelete()}>X</button>
             </div>
@@ -29,6 +28,7 @@ class TodoItem extends React.Component {
                 value={this.props.title}
                 onBlur={this.toggleEditMode}
                 onDoubleClick={this.toggleEditMode}
+                onChange={()=>{}}
                 onKeyDown={(e)=> {
                     if (e.keyCode === 27) {
                         e.preventDefault();
