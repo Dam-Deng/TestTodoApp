@@ -1,8 +1,13 @@
 const {TodoItem} = window.App;
 
 const TodoList = React.createClass({
+    propTypes: {
+        todos: React.PropTypes.array
+    },
+    defaultProps: {
+        todos: []
+    },
     render () {
-
         const {onDeleteTodo} = this.props;
         const {todos} = this.props;
         const todoElements = todos.map(function (todo) {

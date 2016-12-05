@@ -21,14 +21,14 @@ var TodoApp = React.createClass({
             }
         ];
 
-        const data = {
+        const headerData = {
             title: "你的待辦清單",
             name: "dam",
             todoCount: todos.filter((todo) => !todo.completed).length
         };
         return (
             <div>
-                <TodoHeader {...data}/>
+                <TodoHeader {...headerData}/>
                 <InputField placeholder="新的待辦事項"/>
                 <TodoList todos={todos}/>
             </div>
