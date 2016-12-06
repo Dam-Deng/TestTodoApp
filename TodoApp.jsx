@@ -34,7 +34,16 @@ class TodoApp extends React.Component {
         return (
             <div>
                 <TodoHeader {...headerData}/>
-                <InputField placeholder="新的待辦事項"/>
+                <InputField
+                    placeholder="新的待辦事項"
+                    onSubmitEditing={
+                        (title) => {
+                            this.setState({
+                                todos: _createTodo(todos, title)
+                            })
+                        }
+                    }
+                />
                 <TodoList
                     todos={todos}
                     onDeleteTodo={
@@ -64,8 +73,17 @@ const _deleteTodo = (todos, id) => {
 };
 
 const _changeTodo = (todos, id, completed) => {
-    const target = todos.find((todo) => todo.id === id)
-    if(target) target.completed = completed
+    const target = todos.find((todo) => todo.id === id);
+    if (target) target.completed = completed;
     return todos;
-}
+};
+
+const _createTodo = (todos, title) => {
+    todos.push({
+        id: todos[todos.length - 1].id + 1,
+        title,
+        completed: false
+    });
+    return todos;
+};
 window.App.TodoApp = TodoApp;
