@@ -42,6 +42,13 @@ class TodoApp extends React.Component {
                             todos: _deleteTodo(todos, id)
                         })
                     }
+                    onChangeTodo={
+                        (id, completed) => {
+                            this.setState({
+                                todos: _changeTodo(todos, id, completed)
+                            })
+                        }
+                    }
                 />
             </div>
         )
@@ -55,4 +62,10 @@ const _deleteTodo = (todos, id) => {
     }
     return todos;
 };
+
+const _changeTodo = (todos, id, completed) => {
+    const target = todos.find((todo) => todo.id === id)
+    if(target) target.completed = completed
+    return todos;
+}
 window.App.TodoApp = TodoApp;

@@ -10,10 +10,15 @@ class TodoItem extends React.Component {
     }
 
     renderViewMode() {
-        const {title, completed, onDelete} = this.props;
+        const {title, completed, onDelete, onChange} = this.props;
         return (
             <div>
-                <input type="checkbox" checked={completed} readOnly="readOnly"/>
+                <input
+                    type="checkbox"
+                    checked={completed}
+                    readOnly="readOnly"
+                    onChange={() => onChange && onChange(!completed)}
+                />
                 <span>{title}</span>
                 <button onClick={()=> onDelete && onDelete()}>X</button>
             </div>
@@ -28,7 +33,8 @@ class TodoItem extends React.Component {
                 value={this.props.title}
                 onBlur={this.toggleEditMode}
                 onDoubleClick={this.toggleEditMode}
-                onChange={()=>{}}
+                onChange={()=> {
+                }}
                 onKeyDown={(e)=> {
                     if (e.keyCode === 27) {
                         e.preventDefault();
