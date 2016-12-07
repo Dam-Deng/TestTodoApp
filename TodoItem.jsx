@@ -1,29 +1,10 @@
+const {InputField} = window.App;
+
 class TodoItem extends React.Component {
     constructor(props, context, updater) {
         super(props, context, updater);
         this.state = {editable: false};
         this.toggleEditMode = this.toggleEditMode.bind(this);
-        this.handelKeyDown =this.handelKeyDown.bind(this);
-    }
-
-    handelKeyDown(e) {
-        const {onKeyDown, onUpdate} = this.props;
-        const {value} = e.target;
-        switch (e.keyCode) {
-            case 13:
-                if (value.trim()) {
-                    onUpdate && onUpdate(value)
-                }
-                this.toggleEditMode();
-                break;
-
-            case 27:
-                e.preventDefault();
-                this.toggleEditMode();
-                break;
-        }
-
-        onKeyDown && onKeyDown(e);
     }
 
     toggleEditMode() {
@@ -47,9 +28,9 @@ class TodoItem extends React.Component {
     }
 
     renderEditMode() {
-        const {title} = this.props;
+        const {title, onUpdate} = this.props;
         return (
-            <input
+            <InputField
                 autoFocus
                 placeholder="編輯待辦事項"
                 defaultValue={title}
@@ -57,7 +38,19 @@ class TodoItem extends React.Component {
                 onDoubleClick={this.toggleEditMode}
                 onChange={()=> {
                 }}
-                onKeyDown={this.handelKeyDown}
+                onKeyDown={(e)=> {
+                    if (e.keyCode === 27) {
+                        e.preventDefault();
+                        this.toggleEditMode();
+                    }
+                }}
+                onSubmitEditing={
+                    (content) => {
+                        onUpdate && onUpdate(content);
+                        this.toggleEditMode();
+                    }
+                }
+
             />
         );
     }
@@ -68,5 +61,13 @@ class TodoItem extends React.Component {
 
     }
 }
+
+TodoItem.propTypes = {
+    title: React.PropTypes.string.isRequired,
+    completed: React.PropTypes.bool.isRequired,
+    onUpdate: React.PropTypes.func,
+    onToggle: React.PropTypes.func,
+    onDelete: React.PropTypes.func
+};
 
 window.App.TodoItem = TodoItem;
