@@ -22,10 +22,9 @@ class InputField extends React.Component {
     }
 
     render() {
-        const {placeholder} = this.props;
         return (
             <input
-                placeholder={placeholder}
+                {...this.props}
                 name="item"
                 onKeyDown={this.handelKeyDown}
             />
