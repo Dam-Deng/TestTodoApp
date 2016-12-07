@@ -24,6 +24,15 @@ class TodoApp extends React.Component {
         }
     }
 
+    updateTodosBy(updateFun) {
+        return (...args) => {
+            this.setState({
+                todos: updateFun(this.state.todos, ...args)
+            });
+        };
+    }
+
+
     render() {
         const {todos} = this.state;
         const headerData = {
@@ -36,28 +45,13 @@ class TodoApp extends React.Component {
                 <TodoHeader {...headerData}/>
                 <InputField
                     placeholder="新的待辦事項"
-                    onSubmitEditing={
-                        (title) => {
-                            this.setState({
-                                todos: _createTodo(todos, title)
-                            })
-                        }
-                    }
+                    onSubmitEditing={this.updateTodosBy(_createTodo)}
                 />
                 <TodoList
                     todos={todos}
-                    onDeleteTodo={
-                        (id)=>this.setState({
-                            todos: _deleteTodo(todos, id)
-                        })
-                    }
-                    onChangeTodo={
-                        (id, completed) => {
-                            this.setState({
-                                todos: _changeTodo(todos, id, completed)
-                            })
-                        }
-                    }
+                    onDeleteTodo={this.updateTodosBy(_deleteTodo)}
+                    onChangeTodo={this.updateTodosBy(_changeTodo)}
+                    onUpdateTodo={this.updateTodosBy(_updateTodo)}
                 />
             </div>
         )
@@ -86,4 +80,13 @@ const _createTodo = (todos, title) => {
     });
     return todos;
 };
+
+const _updateTodo = (todos, id, content) => {
+    const target = todos.find((todo) => {
+        return todo.id === id
+    });
+    target.title = content;
+    return todos;
+};
+
 window.App.TodoApp = TodoApp;

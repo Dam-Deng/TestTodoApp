@@ -3,6 +3,27 @@ class TodoItem extends React.Component {
         super(props, context, updater);
         this.state = {editable: false};
         this.toggleEditMode = this.toggleEditMode.bind(this);
+        this.handelKeyDown =this.handelKeyDown.bind(this);
+    }
+
+    handelKeyDown(e) {
+        const {onKeyDown, onUpdate} = this.props;
+        const {value} = e.target;
+        switch (e.keyCode) {
+            case 13:
+                if (value.trim()) {
+                    onUpdate && onUpdate(value)
+                }
+                this.toggleEditMode();
+                break;
+
+            case 27:
+                e.preventDefault();
+                this.toggleEditMode();
+                break;
+        }
+
+        onKeyDown && onKeyDown(e);
     }
 
     toggleEditMode() {
@@ -19,29 +40,24 @@ class TodoItem extends React.Component {
                     readOnly="readOnly"
                     onChange={() => onChange && onChange(!completed)}
                 />
-                <span>{title}</span>
+                <span onDoubleClick={this.toggleEditMode}>{title}</span>
                 <button onClick={()=> onDelete && onDelete()}>X</button>
             </div>
         );
     }
 
     renderEditMode() {
+        const {title} = this.props;
         return (
             <input
                 autoFocus
                 placeholder="編輯待辦事項"
-                value={this.props.title}
+                defaultValue={title}
                 onBlur={this.toggleEditMode}
                 onDoubleClick={this.toggleEditMode}
                 onChange={()=> {
                 }}
-                onKeyDown={(e)=> {
-                    if (e.keyCode === 27) {
-                        e.preventDefault();
-                        this.toggleEditMode();
-                    }
-                }}
-
+                onKeyDown={this.handelKeyDown}
             />
         );
     }
