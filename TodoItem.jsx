@@ -33,7 +33,7 @@ class TodoItem extends React.Component {
             <InputField
                 autoFocus
                 placeholder="編輯待辦事項"
-                defaultValue={title}
+                value={title}
                 onBlur={this.toggleEditMode}
                 onDoubleClick={this.toggleEditMode}
                 onChange={()=> {

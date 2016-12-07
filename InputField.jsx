@@ -2,8 +2,15 @@ class InputField extends React.Component {
 
     constructor(props, context) {
         super(props, context);
+        this.state = { value: props.value || '' };
         this.handelKeyDown = this.handelKeyDown.bind(this);
+        this.handelChange = this.handelChange.bind(this);
     }
+
+    handelChange(e) {
+        this.setState({ value: e.target.value });
+    }
+
 
     handelKeyDown(e) {
         const {onKeyDown, onSubmitEditing} = this.props;
@@ -13,8 +20,7 @@ class InputField extends React.Component {
                 if (value.trim()) {
                     onSubmitEditing && onSubmitEditing(value)
                 }
-
-                e.target.value = '';
+                this.setState({value: ''});
                 break;
         }
 
@@ -27,6 +33,8 @@ class InputField extends React.Component {
             <input
                 placeholder={placeholder}
                 name="item"
+                value={this.state.value}
+                onChange={this.handelChange}
                 onKeyDown={this.handelKeyDown}
             />
         )
