@@ -9,18 +9,7 @@ class TodoApp extends React.Component {
     constructor(props, context, updater) {
         super(props, context, updater);
         this.state = {
-            todos: [
-                {
-                    id: 1,
-                    title: "title1",
-                    completed: true
-                },
-                {
-                    id: 2,
-                    title: "title2",
-                    completed: false
-                }
-            ]
+            todos: []
         }
     }
 
@@ -32,6 +21,11 @@ class TodoApp extends React.Component {
         };
     }
 
+    componentDidMount() {
+        fetch('./todos.json')
+            .then((response) => response.json())
+            .then((todos) => this.setState({todos}));
+    }
 
     render() {
         const {todos} = this.state;
