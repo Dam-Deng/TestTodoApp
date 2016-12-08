@@ -1,0 +1,1 @@
+window.App.AppDisPatcher = new Flux.DisPatcher();

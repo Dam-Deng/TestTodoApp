@@ -1,0 +1,50 @@
+{
+  "name": "flux",
+  "description": "An application architecture based on a unidirectional data flow",
+  "version": "3.1.0",
+  "main": "dist/Flux.js",
+  "license": "https://github.com/facebook/flux/blob/master/LICENSE",
+  "homepage": "http://facebook.github.io/flux/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/facebook/flux.git"
+  },
+  "authors": [
+    "Facebook",
+    "Jing Chen <jingc@fb.com>",
+    "Bill Fisher <fisherwebdev@gmail.com>",
+    "Paul O'Shannessy <paul@oshannessy.com>"
+  ],
+  "keywords": [
+    "flux",
+    "dispatcher",
+    "react",
+    "facebook"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "docs",
+    "examples",
+    "src",
+    "lib",
+    "website",
+    "CONTRIBUTING.md",
+    "Gulpfile.js",
+    "index.js",
+    "package.json"
+  ],
+  "_release": "3.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.1.0",
+    "commit": "cfec561d77b869f320110b97526b2e8b83085dd4"
+  },
+  "_source": "https://github.com/facebook/flux.git",
+  "_target": "^3.1.0",
+  "_originalSource": "flux",
+  "_direct": true
+}
