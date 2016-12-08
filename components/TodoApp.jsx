@@ -67,8 +67,9 @@ const _changeTodo = (todos, id, completed) => {
 };
 
 const _createTodo = (todos, title) => {
+    const id = todos.length > 1 ? todos[todos.length - 1].id + 1 : 1;
     todos.push({
-        id: todos[todos.length - 1].id + 1,
+        id: id,
         title,
         completed: false
     });
