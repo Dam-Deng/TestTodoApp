@@ -7,7 +7,7 @@ const _emitter = new EventEmitter();
 let todos = [];
 
 const _createTodo = (todos, title) => {
-    const id = todos.length > 1 ? todos[todos.length - 1].id + 1 : 1;
+    const id = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
     todos.push({
         id: id,
         title,
