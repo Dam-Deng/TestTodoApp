@@ -22,13 +22,19 @@ class InputField extends React.Component {
     }
 
     render() {
+        const {onSubmitEditing, ...otherProps} = this.props;
         return (
             <input
-                {...this.props}
+                {...otherProps}
                 name="item"
                 onKeyDown={this.handelKeyDown}
             />
         )
     }
 }
+
+InputField.propTypes = {
+    onSubmitEditing: React.PropTypes.func
+};
+
 window.App.InputField = InputField;

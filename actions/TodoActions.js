@@ -8,18 +8,18 @@ window.App.TodoActions = {
         })
     },
     loadTodo() {
-      fetch('/todos.json')
-          .then((response) => response.json())
-          .then((todos) => AppDispatcher.dispatcher({
-              type: ActionTypes.LOAD_TODOS_SUCCESS,
-              todos,
-          }));
+        fetch('./todos.json')
+            .then((response) => response.json())
+            .then((todos) => AppDispatcher.dispatch({
+                type: ActionTypes.LOAD_TODOS_SUCCESS,
+                todos,
+            }));
     },
-    updateTodo(id, title) {
+    updateTodo(id, content) {
         AppDispatcher.dispatch({
             type: ActionTypes.UPDATE_TODO,
             id,
-            title,
+            content,
         })
     },
     changeTodo(id, completed) {

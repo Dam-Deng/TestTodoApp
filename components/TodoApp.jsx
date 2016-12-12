@@ -1,4 +1,6 @@
 const {
+    TodoStores,
+    TodoActions,
     InputField,
     TodoHeader,
     TodoList
@@ -9,7 +11,7 @@ class TodoApp extends React.Component {
     constructor(props, context, updater) {
         super(props, context, updater);
         this.state = {
-            todos: []
+            todos: TodoStores.getAll()
         }
     }
 
@@ -22,9 +24,14 @@ class TodoApp extends React.Component {
     }
 
     componentDidMount() {
-        fetch('./todos.json')
-            .then((response) => response.json())
-            .then((todos) => this.setState({todos}));
+        TodoActions.loadTodo();
+        this._removeChangeListener = TodoStores.addChangeListener(
+            () => { this.setState({ todos: TodoStores.getAll() })}
+        );
+    }
+
+    componentWillUnmount() {
+        this._removeChangeListener();
     }
 
     render() {
@@ -39,49 +46,17 @@ class TodoApp extends React.Component {
                 <TodoHeader {...headerData}/>
                 <InputField
                     placeholder="新的待辦事項"
-                    onSubmitEditing={this.updateTodosBy(_createTodo)}
+                    onSubmitEditing={TodoActions.createTodo}
                 />
                 <TodoList
                     todos={todos}
-                    onDeleteTodo={this.updateTodosBy(_deleteTodo)}
-                    onChangeTodo={this.updateTodosBy(_changeTodo)}
-                    onUpdateTodo={this.updateTodosBy(_updateTodo)}
+                    onDeleteTodo={TodoActions.deleteTodo}
+                    onChangeTodo={TodoActions.changeTodo}
+                    onUpdateTodo={TodoActions.updateTodo}
                 />
             </div>
         )
     }
 }
-
-const _deleteTodo = (todos, id) => {
-    const idx = todos.findIndex((todo) => todo.id === id);
-    if (idx !== -1) {
-        todos.splice(idx, 1);
-    }
-    return todos;
-};
-
-const _changeTodo = (todos, id, completed) => {
-    const target = todos.find((todo) => todo.id === id);
-    if (target) target.completed = completed;
-    return todos;
-};
-
-const _createTodo = (todos, title) => {
-    const id = todos.length > 1 ? todos[todos.length - 1].id + 1 : 1;
-    todos.push({
-        id: id,
-        title,
-        completed: false
-    });
-    return todos;
-};
-
-const _updateTodo = (todos, id, content) => {
-    const target = todos.find((todo) => {
-        return todo.id === id
-    });
-    target.title = content;
-    return todos;
-};
 
 window.App.TodoApp = TodoApp;

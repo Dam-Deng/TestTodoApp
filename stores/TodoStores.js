@@ -37,7 +37,7 @@ const _updateTodo = (todos, id, content) => {
     return todos;
 };
 
-window.App.TodoStore = {
+window.App.TodoStores = {
     getAll(){
         return todos;
     },
@@ -48,24 +48,25 @@ window.App.TodoStore = {
     },
 
     dispatchToken: AppDispatcher.register((action) => {
-        switch (action){
+        switch (action.type){
             case ActionTypes.LOAD_TODOS_SUCCESS:
+                todos = action.todos;
                 _emitter.emit(CHANGE_EVENT);
                 break;
             case ActionTypes.CREATE_TODO:
-                _createTodo(todos, action.title);
+                todos = _createTodo(todos, action.title);
                 _emitter.emit(CHANGE_EVENT);
                 break;
             case ActionTypes.UPDATE_TODO:
-                _updateTodo(todos, action.id, action.content);
+                todos = _updateTodo(todos, action.id, action.content);
                 _emitter.emit(CHANGE_EVENT);
                 break;
             case ActionTypes.CHANGE_TODO:
-                _changeTodo(todos, action.id, action.completed);
+                todos = _changeTodo(todos, action.id, action.completed);
                 _emitter.emit(CHANGE_EVENT);
                 break;
             case ActionTypes.DELETE_TODO:
-                _deleteTodo(todos, action.id);
+                todos = _deleteTodo(todos, action.id);
                 _emitter.emit(CHANGE_EVENT);
                 break;
         }
