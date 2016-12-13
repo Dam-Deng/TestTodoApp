@@ -21,6 +21,7 @@
     <script type="text/babel" src="components/TodoItem.jsx" charset="utf-8"></script>
     <script type="text/babel" src="components/TodoList.jsx" charset="utf-8"></script>
     <script type="text/babel" src="components/TodoApp.jsx" charset="utf-8"></script>
+    <script type="text/babel" src="components/TodoAppContainer.jsx" charset="utf-8"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -55,9 +56,9 @@
 <!--</script>-->
 
 <script type="text/babel">
-    const {TodoApp} = window.App;
+    const {TodoAppContainer} = window.App;
     ReactDOM.render(
-            <TodoApp />,
+            <TodoAppContainer />,
             document.getElementById('app')
     )
 </script>
