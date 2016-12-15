@@ -4,12 +4,15 @@ const {
     TodoApp
 } = window.App;
 
+const {Container} = FluxUtils;
 
 class TodoAppContainer extends React.Component {
-    constructor(props, context, updater) {
-        super(props, context, updater);
-        this.state = {
-            todos: TodoStores.getAll()
+    static getStores() {
+        return [TodoStores];
+    }
+    static calculateState(prevState){
+        return {
+            todos: TodoStores.getState(),
         }
     }
 
@@ -23,14 +26,14 @@ class TodoAppContainer extends React.Component {
 
     componentDidMount() {
         TodoActions.loadTodo();
-        this._removeChangeListener = TodoStores.addChangeListener(
-            () => { this.setState({ todos: TodoStores.getAll() })}
-        );
+        // this._removeChangeListener = TodoStores.addChangeListener(
+        //     () => { this.setState({ todos: TodoStores.getAll() })}
+        // );
     }
 
-    componentWillUnmount() {
-        this._removeChangeListener();
-    }
+    // componentWillUnmount() {
+    //     this._removeChangeListener();
+    // }
 
     render() {
         return (
@@ -45,4 +48,4 @@ class TodoAppContainer extends React.Component {
     }
 }
 
-window.App.TodoAppContainer = TodoAppContainer;
+window.App.TodoAppContainer = Container.create(TodoAppContainer);
