@@ -12,9 +12,13 @@
     <script src="bower/flux/dist/Flux.min.js"></script>
     <script src="bower/flux/dist/FluxUtils.min.js"></script>
     <script src="bower/eventEmitter/EventEmitter.min.js"></script>
+    <script src="bower/redux/index.js"></script>
     <script type="text/babel" src="constants/ActionTypes.jsx"></script>
     <script type="text/babel" src="dispatcher/AppDispatcher.jsx"></script>
     <script type="text/babel" src="actions/TodoActions.jsx"></script>
+    <script type="text/babel" src="reducers/todos.js"></script>
+    <script type="text/babel" src="reducers/main.js"></script>
+    <script type="text/babel" src="reducers/index.js"></script>
     <script type="text/babel" src="stores/TodoStores.jsx"></script>
     <script type="text/javascript" src="./browser.js" charset="utf-8"></script>
     <script type="text/babel" src="components/InputField.jsx" charset="utf-8"></script>
@@ -56,12 +60,12 @@
     <!--);-->
 <!--</script>-->
 
-<script type="text/babel">
-    const {TodoAppContainer} = window.App;
-    ReactDOM.render(
-            <TodoAppContainer />,
-            document.getElementById('app')
-    )
-</script>
+<!--<script type="text/babel">-->
+    <!--const {TodoAppContainer} = window.App;-->
+    <!--ReactDOM.render(-->
+            <!--<TodoAppContainer />,-->
+            <!--document.getElementById('app')-->
+    <!--)-->
+<!--</script>-->
 </body>
 </html>
