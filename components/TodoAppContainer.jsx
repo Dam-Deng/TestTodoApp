@@ -5,12 +5,14 @@ const {
 } = window.App;
 
 const {Container} = FluxUtils;
+const {connect} = ReactRedux;
 
 class TodoAppContainer extends React.Component {
     static getStores() {
         return [TodoStores];
     }
-    static calculateState(prevState){
+
+    static calculateState(prevState) {
         return {
             todos: TodoStores.getState(),
         }
@@ -25,10 +27,7 @@ class TodoAppContainer extends React.Component {
     }
 
     componentDidMount() {
-        TodoActions.loadTodo();
-        // this._removeChangeListener = TodoStores.addChangeListener(
-        //     () => { this.setState({ todos: TodoStores.getAll() })}
-        // );
+        this.props.loadTodo();
     }
 
     // componentWillUnmount() {
@@ -36,16 +35,24 @@ class TodoAppContainer extends React.Component {
     // }
 
     render() {
+        console.log(1);
         return (
             <TodoApp
-                todos={this.state.todos}
-                onSubmitEditing={TodoActions.createTodo}
-                onDeleteTodo={TodoActions.deleteTodo}
-                onChangeTodo={TodoActions.changeTodo}
-                onUpdateTodo={TodoActions.updateTodo}
+                todos={this.props.todos}
+                onSubmitEditing={this.props.createTodo}
+                onDeleteTodo={this.props.deleteTodo}
+                onChangeTodo={this.props.changeTodo}
+                onUpdateTodo={this.props.updateTodo}
             />
         )
     }
 }
 
-window.App.TodoAppContainer = Container.create(TodoAppContainer);
+window.App.TodoAppContainer = connect(
+    (state) => ({todos: state.todos}), {
+        loadTodo: TodoActions.loadTodo,
+        createTodo: TodoActions.createTodo,
+        deleteTodo: TodoActions.deleteTodo,
+        changeTodo: TodoActions.changeTodo,
+        updateTodo: TodoActions.updateTodo
+    })(TodoAppContainer);

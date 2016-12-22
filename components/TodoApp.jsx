@@ -4,6 +4,8 @@ const {
     TodoList
 } = window.App;
 
+const {connect} = ReactRedux;
+
 
 class TodoApp extends React.Component {
     render() {

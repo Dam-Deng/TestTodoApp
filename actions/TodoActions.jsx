@@ -1,38 +1,59 @@
-const {ActionTypes, AppDispatcher} = window.App;
+const {ActionTypes} = window.App;
 
 window.App.TodoActions = {
     createTodo(title) {
-        AppDispatcher.dispatch({
+        return {
             type: ActionTypes.CREATE_TODO,
             title
-        })
+        }
     },
-    loadTodo() {
-        fetch('./todos.json')
-            .then((response) => response.json())
-            .then((todos) => AppDispatcher.dispatch({
-                type: ActionTypes.LOAD_TODOS_SUCCESS,
-                todos,
-            }));
+    loadTodo(){
+        return (dispatch) =>{
+            fetch('./todos.json')
+                .then((response) => response.json())
+                .then((todos) => dispatch({
+                    type: ActionTypes.LOAD_TODOS_SUCCESS,
+                    todos
+                }));
+        }
     },
-    updateTodo(id, content) {
-        AppDispatcher.dispatch({
+    updateTodo(id, title){
+        return {
             type: ActionTypes.UPDATE_TODO,
             id,
-            content,
-        })
+            title
+        }
     },
-    changeTodo(id, completed) {
-        AppDispatcher.dispatch({
-            type: ActionTypes.CHANGE_TODO,
+    changeTodo(id, completed){
+        return {
+            type: ActionTypes.UPDATE_TODO,
             id,
-            completed,
-        })
+            completed
+        }
     },
-    deleteTodo(id) {
-        AppDispatcher.dispatch({
+    deleteTodo(id){
+        return {
             type: ActionTypes.DELETE_TODO,
-            id,
-        })
+            id
+        }
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
