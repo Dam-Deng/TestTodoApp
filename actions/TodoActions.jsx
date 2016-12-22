@@ -5,55 +5,36 @@ window.App.TodoActions = {
         return {
             type: ActionTypes.CREATE_TODO,
             title
-        }
+        };
     },
-    loadTodo(){
-        return (dispatch) =>{
+    loadTodo() {
+        return (dispatch) => {
             fetch('./todos.json')
                 .then((response) => response.json())
                 .then((todos) => dispatch({
                     type: ActionTypes.LOAD_TODOS_SUCCESS,
                     todos
                 }));
-        }
+        };
     },
-    updateTodo(id, title){
+    updateTodo(id, content) {
         return {
             type: ActionTypes.UPDATE_TODO,
             id,
-            title
-        }
+            content
+        };
     },
-    changeTodo(id, completed){
+    changeTodo(id, completed) {
         return {
-            type: ActionTypes.UPDATE_TODO,
+            type: ActionTypes.CHANGE_TODO,
             id,
             completed
-        }
+        };
     },
-    deleteTodo(id){
+    deleteTodo(id) {
         return {
             type: ActionTypes.DELETE_TODO,
             id
-        }
+        };
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

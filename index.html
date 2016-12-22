@@ -15,12 +15,9 @@
     <script src="bower/redux/index.js"></script>
     <script src="node_modules/react-redux/dist/react-redux.min.js"></script>
     <script type="text/babel" src="constants/ActionTypes.jsx"></script>
-    <!--<script type="text/babel" src="dispatcher/AppDispatcher.jsx"></script>-->
     <script type="text/babel" src="actions/TodoActions.jsx"></script>
     <script type="text/babel" src="reducers/index.js"></script>
     <script type="text/babel" src="reducers/todos.js"></script>
-    <script type="text/babel" src="reducers/main.js"></script>
-    <!--<script type="text/babel" src="stores/TodoStores.jsx"></script>-->
     <script type="text/javascript" src="./browser.js" charset="utf-8"></script>
     <script type="text/babel" src="components/InputField.jsx" charset="utf-8"></script>
     <script type="text/babel" src="components/TodoHeader.jsx" charset="utf-8"></script>
@@ -28,45 +25,9 @@
     <script type="text/babel" src="components/TodoList.jsx" charset="utf-8"></script>
     <script type="text/babel" src="components/TodoApp.jsx" charset="utf-8"></script>
     <script type="text/babel" src="components/TodoAppContainer.jsx" charset="utf-8"></script>
+    <script type="text/babel" src="reducers/main.js"></script>
 </head>
 <body>
 <div id="app"></div>
-
-<!--<script type="text/babel">-->
-    <!--const HelloList = React.createClass({-->
-        <!--getInitialState() {-->
-            <!--return {opacity: 1.0}-->
-        <!--},-->
-        <!--componentDidMount() {-->
-            <!--this.timer = setInterval(function () {-->
-                <!--var opacity = this.state.opacity;-->
-                <!--opacity -= 0.05;-->
-                <!--if (opacity < 0.1) {-->
-                    <!--opacity = 1.0;-->
-                <!--}-->
-                <!--this.setState({opacity: opacity});-->
-            <!--}.bind(this), 50);-->
-        <!--},-->
-
-        <!--render: function () {-->
-            <!--var opacity = this.state.opacity;-->
-            <!--return <div>-->
-                <!--<p style={{opacity: opacity}}>TEXT</p>-->
-            <!--</div>-->
-        <!--}-->
-    <!--});-->
-    <!--ReactDOM.render(-->
-            <!--<HelloList />,-->
-            <!--document.getElementById('app')-->
-    <!--);-->
-<!--</script>-->
-
-<!--<script type="text/babel">-->
-    <!--const {TodoAppContainer} = window.App;-->
-    <!--ReactDOM.render(-->
-            <!--<TodoAppContainer />,-->
-            <!--document.getElementById('app')-->
-    <!--)-->
-<!--</script>-->
 </body>
 </html>

@@ -4,7 +4,6 @@ const {
     TodoApp
 } = window.App;
 
-const {Container} = FluxUtils;
 const {connect} = ReactRedux;
 
 class TodoAppContainer extends React.Component {
@@ -35,7 +34,6 @@ class TodoAppContainer extends React.Component {
     // }
 
     render() {
-        console.log(1);
         return (
             <TodoApp
                 todos={this.props.todos}

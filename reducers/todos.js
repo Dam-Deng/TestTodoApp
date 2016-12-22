@@ -1,4 +1,17 @@
+// const state = {
+//     todos: []
+// };
+//
+// const reducers = {
+//     todos: todosReducer
+// };
+//
+// const reducer = combineReducers(reducers);
+//
+// window.App.reducers = {};
+
 const {ActionTypes} = window.App;
+
 
 const _createTodo = (todos, title) => {
     const id = todos.length > 0 ? todos[todos.length - 1].id + 1 : 1;
@@ -27,6 +40,7 @@ const _changeTodo = (todos, id, completed) => {
     if (target) target.completed = completed;
     return newTodos;
 };
+
 const _updateTodo = (todos, id, content) => {
     const idx = todos.findIndex((todo) => {
         return todo.id === id
@@ -38,7 +52,6 @@ const _updateTodo = (todos, id, content) => {
     };
     return newTodos;
 };
-
 
 window.App.reducers.todos = (state = [], action) => {
     switch (action.type) {
