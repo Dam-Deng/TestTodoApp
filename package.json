@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Dam-Deng/TestTodoApp#readme",
   "dependencies": {
+    "immutable": "^3.8.1",
     "react-redux": "^5.0.1"
   }
 }
