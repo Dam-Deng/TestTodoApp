@@ -1,4 +1,5 @@
 const {TodoItem} = window.App;
+const {List} = Immutable;
 
 class TodoList extends React.Component {
     render() {
@@ -28,11 +29,11 @@ class TodoList extends React.Component {
 }
 
 TodoList.propTypes = {
-    todos: React.PropTypes.array
+    todos: React.PropTypes.object
 };
 
 TodoList.defaultProps = {
-    todos: []
+    todos: new List
 };
 
 
