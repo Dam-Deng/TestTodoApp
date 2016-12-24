@@ -18,7 +18,7 @@ class TodoApp extends React.Component {
         const headerData = {
             title: "你的待辦清單",
             name: "dam",
-            todoCount: todos.filter((todo) => !todo.completed).length
+            todoCount: todos.filter((todo) => !todo.completed).size
         };
         return (
             <div>
